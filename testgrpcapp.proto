@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package testgrpcapp;
+
+service EchoService {
+  rpc Echo (EchoMessage) returns (EchoMessage) {}
+}
+
+message EchoMessage {
+  string value = 1;
+}
