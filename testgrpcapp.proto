@@ -2,6 +2,8 @@ syntax = "proto3";
 
 package testgrpcapp;
 option go_package = "github.com/lbaldwin234/test-grpc-app";
+
+
 service EchoService {
   rpc Echo (EchoMessage) returns (EchoMessage) {}
 }

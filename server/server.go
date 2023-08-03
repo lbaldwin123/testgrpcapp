@@ -5,14 +5,14 @@ import (
 	"log"
 	"net"
 
-	"github.com/lbaldwin123/test-grpc-app"
+	"github.com/lbaldwin123/testgrpcapp" // replace this line
 	"google.golang.org/grpc"
 )
 
 type server struct{}
 
-func (s *server) Echo(ctx context.Context, in *echo.EchoMessage) (*echo.EchoMessage, error) {
-	return &echo.EchoMessage{Value: "Echo: " + in.Value}, nil
+func (s *server) Echo(ctx context.Context, in *testgrpcapp.EchoMessage) (*testgrpcapp.EchoMessage, error) {
+	return &testgrpcapp.EchoMessage{Value: "Echo: " + in.Value}, nil
 }
 
 func main() {
@@ -21,9 +21,8 @@ func main() {
 		log.Fatalf("failed to listen: %v", err)
 	}
 	s := grpc.NewServer()
-	echo.RegisterEchoServiceServer(s, &server{})
+	testgrpcapp.RegisterEchoServiceServer(s, &server{}) // replace this line
 	if err := s.Serve(lis); err != nil {
 		log.Fatalf("failed to serve: %v", err)
 	}
 }
-

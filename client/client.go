@@ -3,9 +3,9 @@ package main
 import (
 	"context"
 	"log"
-	"os"
 	"time"
-	"github.com/lbaldwin123/test-grpc-app"
+
+	// replace this line
 	"google.golang.org/grpc"
 )
 
@@ -15,14 +15,13 @@ func main() {
 		log.Fatalf("did not connect: %v", err)
 	}
 	defer conn.Close()
-	c := echo.NewEchoServiceClient(conn)
+	c := testgrpcapp.NewEchoServiceClient(conn) // replace this line
 
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second)
 	defer cancel()
-	r, err := c.Echo(ctx, &echo.EchoMessage{Value: "Hello"})
+	r, err := c.Echo(ctx, &testgrpcapp.EchoMessage{Value: "Hello"}) // replace this line
 	if err != nil {
 		log.Fatalf("could not echo: %v", err)
 	}
 	log.Printf("Greeting: %s", r.Value)
 }
-
